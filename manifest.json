@@ -1,0 +1,19 @@
+{
+"name": "JenkinsPortal",
+"version": "1.2",
+"description": "Change all jenkins url to a multi-level anchor.",
+"permissions": [],
+"icons": {},
+"browser_action": {
+	"default_popup": "helloworld.html"
+},
+"content_scripts": [
+	{
+		"matches": ["https://cybersoft4u.atlassian.net/*"],
+		"js": ["helloworld.js"],
+		"run_at": "document_start"
+	}
+],
+"manifest_version": 2 ,
+"options_page": "helloworld.html"
+}
