@@ -1,9 +1,11 @@
 var getJenkinsAnchors = function() {
   let anchors = Array.from(document.getElementsByTagName("a"));
-  anchors.filter(function(elem) {
-    console.log(elem.href);
+  anchors = anchors.filter(function(elem) {
+    if (! elem.href ) {
+      return false;
+    }
     let url = new URL(elem.href);
-    return url.hostname === '192.168.96.25:8082';
+    return url.origin === 'http://192.168.96.25:8082';
   })
   return anchors;
 }
