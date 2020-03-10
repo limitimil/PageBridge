@@ -12,7 +12,7 @@
 		"matches": ["https://cybersoft4u.atlassian.net/*"],
 		"js": [
 			"utils.js",
-			"helloworld.js"
+			"main.js"
 		],
 		"run_at": "document_start"
 	}
