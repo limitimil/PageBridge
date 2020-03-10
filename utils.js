@@ -27,21 +27,20 @@ var urlToDivs = (urlString) => {
 var pathToDivs = (pathString) => {
   let contents = pathString.split('/');
   contents = contents.filter(elem=>elem);
-  console.log(contents);
   let result = [];
   for (let i =0; i< contents.length; i++) {
     let dom = document.createElement('button');
-    let target =  contents.slice(0,i).join('/');
     dom.addEventListener('click', function(elem) {
-      alert(this.parentNode.getAttribute('target'));
-      alert(this.getAttribute('target'));
+      let goToUrl = this.parentNode.getAttribute('target') + '/' + this.getAttribute('target');
+      window.open(goToUrl);
     })
-    dom.innerHTML = target;
-    dom.setAttribute('target', target);
+    dom.innerHTML = contents[i];
+    dom.setAttribute('target',  contents.slice(0,i+1).join('/'));
     result.push(dom);
   }
   return result;
 }
+
 function delay() {   
   return new Promise(function (resolve, reject) {
     setTimeout(function () {
