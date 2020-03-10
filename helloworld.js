@@ -4,7 +4,8 @@
     await delay();
     let anchors = getJenkinsAnchors();
     anchors.forEach(elem => {
-      elem.style.backgroundColor = "red";
+      let div = urlToDivs(elem.href);
+      elem.parentNode.replaceChild(div, elem);
     });
   }
 );
