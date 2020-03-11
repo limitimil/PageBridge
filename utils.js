@@ -34,7 +34,7 @@ var pathToDivs = (pathString) => {
       let goToUrl = this.parentNode.getAttribute('target') + '/' + this.getAttribute('target');
       window.open(goToUrl);
     })
-    dom.innerHTML = contents[i];
+    dom.innerHTML = '/' + contents[i];
     dom.setAttribute('target',  contents.slice(0,i+1).join('/'));
     result.push(dom);
   }
