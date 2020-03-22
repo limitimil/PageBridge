@@ -41,6 +41,16 @@ var pathToDivs = (pathString) => {
   return result;
 }
 
+var getBuildResult= (href) => {
+  return new Promise((resolve, reject) => {
+    chrome.runtime.sendMessage({target: href}, (response)=>{
+      console.log('hello world');
+      console.log(response);
+      resolve({target: href});
+    });
+  });
+}
+
 function delay() {   
   return new Promise(function (resolve, reject) {
     setTimeout(function () {
