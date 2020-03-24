@@ -3,10 +3,8 @@ async function build_up_jenkins_portal() {
   await delay();
   let anchors = getJenkinsAnchors();
   if (!once) {
-    await anchors.forEach(async(elem) => {
-      let div = urlToDivs(elem.href);
-      let result = await getBuildResult(elem.href);
-      console.log(result);
+    await anchors.forEach(async (elem) => {
+      let div = await urlToDivs(elem.href);
       elem.parentNode.replaceChild(div, elem);
     });
     once += 1;

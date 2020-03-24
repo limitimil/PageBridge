@@ -10,7 +10,7 @@ var getJenkinsAnchors = function() {
   return anchors;
 }
 
-var urlToDivs = (urlString) => {
+var urlToDivs = async (urlString) => {
   let url = new URL(urlString);
   let paths = url.pathname;
   let origin = url.origin;
@@ -21,6 +21,9 @@ var urlToDivs = (urlString) => {
   children.forEach(elem => {
     dom.appendChild(elem);
   });
+  let semaphore =document.createElement('span');
+  semaphore.innerText = await getBuildResult(urlString);
+  dom.appendChild(semaphore);
   return dom;
 }
 
@@ -44,9 +47,7 @@ var pathToDivs = (pathString) => {
 var getBuildResult= (href) => {
   return new Promise((resolve, reject) => {
     chrome.runtime.sendMessage({target: href}, function(response){
-      console.log('hello world');
-      console.log(response);
-      resolve({target: href});
+      resolve(response.status);
     });
   });
 }

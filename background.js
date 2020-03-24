@@ -8,10 +8,15 @@ let getBuildResult= (url) => {
   });
 };
 
-chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   let url = request.target;
-  const result = await getBuildResult(url);
-  console.log(result);
-  await sendResponse(result);
+    fetch(`${url}/api/json`).then((response) => {
+      if (response.status === 200) {
+        sendResponse({ status: response.json().result });
+      }
+      sendResponse({ status: "FAILURE" });
+    }).catch((error) => {
+      sendResponse({ status: "FAILURE" });
+    });
   return true;
 });
