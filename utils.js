@@ -21,9 +21,8 @@ var urlToDivs = async (urlString) => {
   children.forEach(elem => {
     dom.appendChild(elem);
   });
-  let semaphore =document.createElement('span');
-  semaphore.innerText = await getBuildResult(urlString);
-  dom.appendChild(semaphore);
+  let buildStatus = await getBuildResult(urlString);
+  dom.appendChild(getResultIcon(buildStatus));
   return dom;
 }
 
@@ -52,10 +51,30 @@ var getBuildResult= (href) => {
   });
 }
 
+var getResultIcon= (status) => {
+  let div = document.createElement('img');
+  let imgSrc;
+  switch(status){
+    case 'FAILURE':
+      imgSrc = chrome.extension.getURL("images/red.png");
+      break;
+    case 'SUCCESS':
+      imgSrc = chrome.extension.getURL("images/blue.png");
+      break;
+    case 'ABORTED':
+      imgSrc = chrome.extension.getURL("images/red.png");
+      break;
+    default:
+      imgSrc = chrome.extension.getURL("images/blue_anime.gif");
+      break;
+  }
+  div.src = imgSrc;
+  return div;
+}
 function delay() {   
   return new Promise(function (resolve, reject) {
     setTimeout(function () {
       resolve('我是傳下去的值');
-    }, 1000);
+    }, 2000);
   });
 }

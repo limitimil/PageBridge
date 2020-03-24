@@ -24,6 +24,10 @@
 		"background.js"],
 	"persistant": false
 },
+"web_accessible_resources": [
+	"images/*.png",
+	"images/*.gif"
+],
 "manifest_version": 2 ,
 "options_page": "helloworld.html"
 }
