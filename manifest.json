@@ -3,6 +3,8 @@
 "version": "1.2",
 "description": "Change all jenkins url to a multi-level anchor.",
 "permissions": [
+  "tabs",
+  "declarativeContent",
 	"http://192.168.96.25:8082/*"
 ],
 "icons": {},

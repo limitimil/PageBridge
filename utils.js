@@ -71,7 +71,17 @@ var getResultIcon= (status) => {
   div.src = imgSrc;
   return div;
 }
-function delay() {   
+
+var getPathsFromUrl= (urlString) => {
+  let url = new URL(urlString);
+  let paths = url.pathname;
+  let contents = paths.split('/');
+  contents = contents.filter(elem=>elem);
+  return contents;
+}
+
+
+function delay() {
   return new Promise(function (resolve, reject) {
     setTimeout(function () {
       resolve('我是傳下去的值');
