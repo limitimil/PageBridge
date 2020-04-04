@@ -85,6 +85,10 @@ var getPathsFromUrl= (urlString) => {
   return contents;
 }
 
+var isJiraIssueKey= (s) => {
+  return s.match(/.*CTIS-.*/);
+}
+
 
 function delay() {
   return new Promise(function (resolve, reject) {
