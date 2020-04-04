@@ -1,3 +1,8 @@
+var serviceConfigurations = {
+    jenkinsRoot:  'http://192.168.96.25:8082',
+    jenkinsPortalMasterRoot: 'http://localhost:5000'
+};
+
 var getJenkinsAnchors = function() {
   let anchors = Array.from(document.getElementsByTagName("a"));
   anchors = anchors.filter(function(elem) {
@@ -5,7 +10,7 @@ var getJenkinsAnchors = function() {
       return false;
     }
     let url = new URL(elem.href);
-    return url.origin === 'http://192.168.96.25:8082';
+    return url.origin === serviceConfigurations.jenkinsRoot;
   })
   return anchors;
 }
