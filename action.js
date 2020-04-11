@@ -1,5 +1,6 @@
 let dom = document.getElementById('jira-target');
 let current_url = '';
+var supported_tags = ['PR', 'CI', 'Reference', 'Demo']
 document.getElementById('submit').addEventListener('click', function(){
   const submitter = this;
   submitter.disabled = true;
@@ -15,6 +16,21 @@ document.getElementById('submit').addEventListener('click', function(){
     submitter.innerText = 'fail';
   });
 });
+
+const appender = document.getElementById('customized-appender');
+supported_tags.forEach((tag) => {
+  let btn = document.createElement('button');
+  btn.innerHTML = `update <strong>${tag}</strong> to jira card`;
+  btn.addEventListener('click', function() {
+    const submitter =  this;
+    const issueKey = appender.querySelector('#jira-target').value;
+    submitter.disabled = true;
+    appendCustomizedJiraComment(issueKey, current_url, tag)
+    .then(()=>{submitter.innerText = 'success'})
+    .catch(()=>{submitter.innerText = 'fail'})
+  });
+  appender.appendChild(btn);
+})
 
 chrome.tabs.getSelected(null, (tab)=> {
   current_url = tab.url;

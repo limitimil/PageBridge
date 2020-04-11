@@ -89,6 +89,15 @@ var isJiraIssueKey= (s) => {
   return s.match(/.*CTIS-.*/);
 }
 
+var appendCustomizedJiraComment = (issueKey, url, tag) => {
+  return axios({
+    method: 'put',
+    baseURL: serviceConfigurations.jenkinsPortalMasterRoot,
+    url: `/append_comment/${tag}`,
+    'Content-Type': 'application/json',
+    data: { issue_key: issueKey, reference_url: url}
+  });
+}
 
 function delay() {
   return new Promise(function (resolve, reject) {
