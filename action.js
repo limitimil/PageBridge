@@ -1,5 +1,5 @@
 let dom = document.getElementById('jira-target');
-let current_url = '';
+let currentUrl = '';
 var supported_tags = ['PR', 'CI', 'Reference', 'Demo']
 document.getElementById('submit').addEventListener('click', function(){
   const submitter = this;
@@ -9,7 +9,7 @@ document.getElementById('submit').addEventListener('click', function(){
     baseURL: serviceConfigurations.jenkinsPortalMasterRoot,
     url: '/append_comment/ci_reference',
     'Content-Type': 'application/json',
-    data: { issue_key: dom.value, reference_url: current_url}
+    data: { issue_key: dom.value, reference_url: currentUrl}
   }).then(()=> { 
     submitter.innerText = 'success';
   }).catch(()=>{
@@ -25,7 +25,7 @@ supported_tags.forEach((tag) => {
     const submitter =  this;
     const issueKey = appender.querySelector('#jira-target').value;
     submitter.disabled = true;
-    appendCustomizedJiraComment(issueKey, current_url, tag)
+    appendCustomizedJiraComment(issueKey, currentUrl, tag)
     .then(()=>{submitter.innerText = 'success'})
     .catch(()=>{submitter.innerText = 'fail'})
   });
@@ -33,7 +33,7 @@ supported_tags.forEach((tag) => {
 })
 
 chrome.tabs.getSelected(null, (tab)=> {
-  current_url = tab.url;
+  currentUrl = tab.url;
   let paths = getPathsFromUrl(tab.url);
   for (let path of paths){
     if (isJiraIssueKey(path)){
