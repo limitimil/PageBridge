@@ -1,6 +1,6 @@
 var serviceConfigurations = {
     jenkinsRoot:  'http://192.168.96.25:8082',
-    jenkinsPortalMasterRoot: 'http://localhost:5000'
+    jenkinsPortalMasterRoot: 'http://192.168.107.135:9002'
 };
 
 var getJenkinsAnchors = function() {
