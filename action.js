@@ -23,6 +23,8 @@ chrome.tabs.getSelected(null, (tab)=> {
   for (let path of paths){
     if (isJiraIssueKey(path)){
       dom.setAttribute('value', path);
+      dom.focus();
+      dom.select();
       break;
     }
   }
