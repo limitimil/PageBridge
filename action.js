@@ -1,21 +1,6 @@
 let dom = document.getElementById('jira-target');
 let currentUrl = '';
 var supported_tags = ['PR', 'CI', 'Reference', 'Demo']
-document.getElementById('submit').addEventListener('click', function(){
-  const submitter = this;
-  submitter.disabled = true;
-  axios({
-    method: 'put',
-    baseURL: serviceConfigurations.jenkinsPortalMasterRoot,
-    url: '/append_comment/ci_reference',
-    'Content-Type': 'application/json',
-    data: { issue_key: dom.value, reference_url: currentUrl}
-  }).then(()=> { 
-    submitter.innerText = 'success';
-  }).catch(()=>{
-    submitter.innerText = 'fail';
-  });
-});
 
 const appender = document.getElementById('customized-appender');
 supported_tags.forEach((tag) => {
