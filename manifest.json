@@ -1,35 +1,31 @@
 {
-"name": "JenkinsPortal",
-"version": "1.2",
-"description": "Change all jenkins url to a multi-level anchor.",
-"permissions": [
-  "tabs",
-  "declarativeContent",
-	"http://192.168.96.25:8082/*"
-],
-"icons": {},
-"browser_action": {
-	"default_popup": "action.html"
-},
-"content_scripts": [
-	{
-		"matches": ["https://cybersoft4u.atlassian.net/*"],
-		"js": [
-			"utils.js",
-			"main.js"
-		],
-		"run_at": "document_start"
-	}
-],
-"background":{
-	"scripts": [
-		"background.js"],
-	"persistant": false
-},
-"web_accessible_resources": [
-	"images/*.png",
-	"images/*.gif"
-],
-"manifest_version": 2 ,
-"options_page": "action.html"
+  "name": "JenkinsPortal",
+  "version": "1.2",
+  "description": "Change all jenkins url to a multi-level anchor.",
+  "permissions": ["tabs", "declarativeContent", "http://192.168.96.25:8082/*"],
+  "icons": {},
+  "browser_action": {
+    "default_popup": "action.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://cybersoft4u.atlassian.net/*"],
+      "js": ["utils.js", "main.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistant": false
+  },
+  "web_accessible_resources": ["images/*.png", "images/*.gif"],
+  "manifest_version": 2,
+  "options_page": "action.html",
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+O"
+      }
+    }
+  }
 }
