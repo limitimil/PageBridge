@@ -16,6 +16,18 @@ supported_tags.forEach((tag) => {
   });
   appender.appendChild(btn);
 })
+const blackHoleEventAppender = document.getElementById('black-hole-event');
+let btn = document.createElement('button');
+btn.innerHTML = 'black hole it';
+btn.addEventListener('click', function() {
+  const submitter =  this;
+  const issueKey = appender.querySelector('#jira-target').value;
+  submitter.disabled = true;
+  blackHoleEvent(issueKey, currentUrl, 'helloworld')
+  .then(()=>{submitter.innerText = 'success'})
+  .catch(()=>{submitter.innerText = 'fail'})
+});
+blackHoleEventAppender.appendChild(btn);
 
 chrome.tabs.getSelected(null, (tab)=> {
   currentUrl = tab.url;

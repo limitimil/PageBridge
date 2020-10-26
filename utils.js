@@ -89,6 +89,16 @@ var isJiraIssueKey= (s) => {
   return s.match(/.*CTIS-.*/);
 }
 
+var blackHoleEvent = (issueKey, url, tag) => {
+  return axios({
+    method: 'put',
+    baseURL: serviceConfigurations.jenkinsPortalMasterRoot,
+    url: 'pass_bug_to_black_hole',
+    'Content-Type': 'application/json',
+    data: { issue_key: issueKey, reference_url: url}
+  });
+}
+
 var appendCustomizedJiraComment = (issueKey, url, tag) => {
   return axios({
     method: 'put',
