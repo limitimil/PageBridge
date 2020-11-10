@@ -29,6 +29,19 @@ btn.addEventListener('click', function() {
 });
 blackHoleEventAppender.appendChild(btn);
 
+const appendLineUpMessageAppender = document.getElementById('append-line-up-message');
+btn = document.createElement('button');
+btn.innerHTML = 'append line up message';
+btn.addEventListener('click', function() {
+  const submitter =  this;
+  const issueKey = appender.querySelector('#jira-target').value;
+  submitter.disabled = true;
+  appendLineUpMessage(issueKey, currentUrl, 'helloworld')
+  .then(()=>{submitter.innerText = 'success'})
+  .catch(()=>{submitter.innerText = 'fail'})
+});
+appendLineUpMessageAppender.appendChild(btn);
+
 chrome.tabs.getSelected(null, (tab)=> {
   currentUrl = tab.url;
   let paths = getPathsFromUrl(tab.url);
