@@ -16,5 +16,8 @@ async function build_up_jenkins_portal() {
 
 (document.documentElement).addEventListener(
   "transitionend",
-  build_up_jenkins_portal
+  function () {
+    setTimeout(
+    build_up_jenkins_portal, 5000)
+  }
 );
