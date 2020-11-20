@@ -42,6 +42,22 @@ btn.addEventListener('click', function() {
 });
 appendLineUpMessageAppender.appendChild(btn);
 
+const supported_transition_names = ['verification']
+const transitionAppender = document.getElementById('transition');
+supported_transition_names.forEach((transitionName) => {
+  let btn = document.createElement('button');
+  btn.innerHTML = `transit to <strong>${transitionName}</strong>`;
+  btn.addEventListener('click', function() {
+    const submitter =  this;
+    const issueKey = appender.querySelector('#jira-target').value;
+    submitter.disabled = true;
+    transitTo(issueKey, currentUrl, transitionName)
+    .then(()=>{submitter.innerText = 'success'})
+    .catch(()=>{submitter.innerText = 'fail'})
+  });
+  appender.appendChild(btn);
+})
+
 chrome.tabs.getSelected(null, (tab)=> {
   currentUrl = tab.url;
   let paths = getPathsFromUrl(tab.url);
