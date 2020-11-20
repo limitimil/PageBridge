@@ -89,6 +89,16 @@ var isJiraIssueKey= (s) => {
   return s.match(/.*CTIS-.*/);
 }
 
+var appendLineUpMessage = (issueKey, url, tag) => {
+  return axios({
+    method: 'put',
+    baseURL: serviceConfigurations.jenkinsPortalMasterRoot,
+    url: '/append/pr_line_up_message',
+    'Content-Type': 'application/json',
+    data: { issue_key: issueKey, reference_url: url}
+  });
+}
+
 var blackHoleEvent = (issueKey, url, tag) => {
   return axios({
     method: 'put',
