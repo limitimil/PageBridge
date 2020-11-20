@@ -109,6 +109,16 @@ var blackHoleEvent = (issueKey, url, tag) => {
   });
 }
 
+var transitTo = (issueKey, url, transitionName) => {
+  return axios({
+    method: 'put',
+    baseURL: serviceConfigurations.jenkinsPortalMasterRoot,
+    url: `/transition/${transitionName}`,
+    'Content-Type': 'application/json',
+    data: { issue_key: issueKey, reference_url: url}
+  });
+}
+
 var appendCustomizedJiraComment = (issueKey, url, tag) => {
   return axios({
     method: 'put',
