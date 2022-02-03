@@ -15,7 +15,7 @@
     },
     {
       "matches": ["https://*/*"],
-      "js": ["contentReader/index.js"],
+      "js": ["contentReader/rules.js", "contentReader/index.js"],
       "run_at": "document_start"
     }
   ],
