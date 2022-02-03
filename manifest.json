@@ -12,6 +12,11 @@
       "matches": ["https://cybersoft4u.atlassian.net/*"],
       "js": ["utils.js", "main.js"],
       "run_at": "document_start"
+    },
+    {
+      "matches": ["https://*/*"],
+      "js": ["contentReader.js"],
+      "run_at": "document_start"
     }
   ],
   "background": {
