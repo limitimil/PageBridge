@@ -44,6 +44,13 @@ appendLineUpMessageAppender.appendChild(btn);
 
 chrome.tabs.getSelected(null, (tab)=> {
   currentUrl = tab.url;
+
+  chrome.tabs.sendMessage(tab.id, {regex: "PROP-\\d+"}, function(response) {
+    if(response.jiraId){
+      dom.setAttribute('value', response.jiraId);
+    }
+  });
+
   let paths = getPathsFromUrl(tab.url);
   for (let path of paths){
     if (isJiraIssueKey(path)){
