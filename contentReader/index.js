@@ -1,3 +1,6 @@
+// TODO: use require/import to improve readability
+// const { ruleMatchInTitle } = require('./rules.js');
+
 class ChainDetector {
   constructor(){
     this.ruleFunctions = []
@@ -24,13 +27,6 @@ class ChainDetector {
       }
     }
     return false;
-  }
-}
-function ruleMatchInTitle(regex, sendResponse) {
-  const matchInTheTitle = document.title.match(regex);
-  if(matchInTheTitle) {
-    sendResponse({jiraId: matchInTheTitle[0] });
-    return true;
   }
 }
 const chain = new ChainDetector();
