@@ -31,14 +31,12 @@ class ChainDetector {
 }
 const chain = new ChainDetector();
 chain.push(ruleMatchInTitle);
+chain.push(ruleMatchInUrl);
+chain.push(ruleMatchInHeaders);
+chain.push(ruleMatchInAnchors);
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   const regex = new RegExp(request.regex);
-  // TODO: responsible chain
-  // title
   return chain.detectAndSendResponse({ regex, sendResponse });
-  // url
-  // headers
-  // anchors
 });
 
