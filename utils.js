@@ -119,6 +119,16 @@ var appendCustomizedJiraComment = (issueKey, url, tag) => {
   });
 }
 
+// TODO: review the parameter
+var getJiraIssueBrief = (issueKey) => {
+  return axios({
+    method: 'get',
+    baseURL: serviceConfigurations.jenkinsPortalMasterRoot,
+    url: `/brief/${issueKey}`,
+    'Content-Type': 'application/json',
+  });
+}
+
 function delay() {
   return new Promise(function (resolve, reject) {
     setTimeout(function () {
