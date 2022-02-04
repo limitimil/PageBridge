@@ -119,7 +119,6 @@ var appendCustomizedJiraComment = (issueKey, url, tag) => {
   });
 }
 
-// TODO: review the parameter
 var getJiraIssueBrief = (issueKey) => {
   return axios({
     method: 'get',
