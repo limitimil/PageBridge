@@ -46,6 +46,9 @@ chrome.tabs.getSelected(null, (tab)=> {
   currentUrl = tab.url;
 
   chrome.tabs.sendMessage(tab.id, {regex: "PROP-\\d+"}, function(response) {
+    if(!response){
+      throw Error(`response is falsy: ${response}`);
+    }
     if(response.jiraId){
       dom.setAttribute('value', response.jiraId);
     }
