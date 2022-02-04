@@ -51,6 +51,17 @@ chrome.tabs.getSelected(null, (tab)=> {
     }
     if(response.jiraId){
       dom.setAttribute('value', response.jiraId);
+      getJiraIssueBrief(response.jiraId).then((response)=>{
+        const dom = document.getElementById('issue-brief');
+        for( const key in response.data ){
+          const header = document.createElement('h3');
+          const span = document.createElement('span');
+          header.innerText = key;
+          span.innerText = response.data[key];
+          dom.appendChild(header);
+          dom.appendChild(span);
+        }
+      });
     }
   });
 
