@@ -1,7 +1,7 @@
 {
-  "name": "JenkinsPortal",
+  "name": "PageBridge",
   "version": "1.2",
-  "description": "Change all jenkins url to a multi-level anchor.",
+  "description": "PageBridge is a Chrome browser extension that facilitates seamless information synchronization between different websites. It enhances your browsing experience by detecting Jenkins paths and displaying build statuses inline. Additionally, it provides a convenient popup form to input Jira issue keys and update the current link to comments in the respective Jira issue.",
   "permissions": ["tabs", "declarativeContent", "http://192.168.96.25:8082/*"],
   "icons": {},
   "browser_action": {
